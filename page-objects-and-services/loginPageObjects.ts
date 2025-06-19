@@ -26,14 +26,20 @@ export class AiAdminLogin{
     
     public createSession(){
         cy.session('aiAdminLogin', () => {
+            console.log('Creating session for AI Admin Login');
             this.visitLoginPage()
+            
               .enterEmail('info@multiplex.net')
               .enterPassword('Multiplex@123')
               .clickLoginButton();
+
+              console.log('Session created successfully');
+
       
       
               this.visitDashboardPage();
-              cy.wait(5000);
+              console.log('Dashboard page visited successfully');
+              cy.wait(1000);
       
           });
     }

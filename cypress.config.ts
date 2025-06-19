@@ -1,5 +1,7 @@
 import { defineConfig } from "cypress";
 import { configureAllureAdapterPlugins } from '@mmisty/cypress-allure-adapter/plugins';
+import { FileUtils } from "./page-objects-and-services/fileHandling";
+import installLogsPrinter from 'cypress-terminal-report/src/installLogsPrinter';
 
 export default defineConfig({
   chromeWebSecurity: false,
@@ -35,6 +37,8 @@ export default defineConfig({
     video: false,
 
     setupNodeEvents(on, config) {
+      installLogsPrinter(on);
+      
       // Add Cypress Grep Plugin
       require('@cypress/grep/src/plugin')(config);
 
@@ -43,6 +47,34 @@ export default defineConfig({
 
       // Add Allure Adapter Plugin
       const reporter = configureAllureAdapterPlugins(on, config);
+
+
+
+      on('task', {
+        log(message: string) {
+          console.log(`[LOG]: ${message}`);
+          return null;
+        }
+      });
+
+      
+
+      on('task', {
+        cleanInvoiceFolder() {
+          return FileUtils.cleanInvoiceFolder();
+        }
+      });
+
+      on('task', {
+        getLatestInvoiceFileName() {
+          return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(FileUtils.getLatestInvoiceFileName());
+        }, 5000); // Adding a 1-second delay
+          });
+        }
+      });
+      
 
       on('before:run', (details) => {
         reporter?.writeEnvironmentInfo({
