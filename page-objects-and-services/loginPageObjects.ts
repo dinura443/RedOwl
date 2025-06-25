@@ -24,25 +24,27 @@ export class AiAdminLogin{
         return this;
     }
     
-    public createSession(){
+    public createSession() {
         cy.session('aiAdminLogin', () => {
-            console.log('Creating session for AI Admin Login');
-            this.visitLoginPage()
-            
-              .enterEmail('info@multiplex.net')
-              .enterPassword('Multiplex@123')
-              .clickLoginButton();
-
-              console.log('Session created successfully');
-
+          const email = Cypress.env('adminEmail');
+          const password = Cypress.env('adminPassword');
       
+          console.log('Creating session for AI Admin Login');
       
-              this.visitDashboardPage();
-              console.log('Dashboard page visited successfully');
-              cy.wait(1000);
+          this.visitLoginPage()
+            .enterEmail(email)
+            .enterPassword(password)
+            .clickLoginButton();
       
-          });
-    }
+          console.log('Session created successfully');
+      
+          this.visitDashboardPage();
+          console.log('Dashboard page visited successfully');
+      
+          cy.wait(1000);
+        });
+      }
+      
     public enterPassword(password: string) {
         cy.xpath(this.txt_password)
         .type(password);

@@ -63,5 +63,8 @@ describe('Invoice operation', () => {
       payableAssistantsChat.AttachFileButton(filename);
       cy.wait(30000);
     });
-  });
+
+    });
 });
+
+

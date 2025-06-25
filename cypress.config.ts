@@ -2,6 +2,9 @@ import { defineConfig } from "cypress";
 import { configureAllureAdapterPlugins } from '@mmisty/cypress-allure-adapter/plugins';
 import { FileUtils } from "./page-objects-and-services/fileHandling";
 import installLogsPrinter from 'cypress-terminal-report/src/installLogsPrinter';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 
 export default defineConfig({
   chromeWebSecurity: false,
@@ -17,6 +20,8 @@ export default defineConfig({
     allureSkipCommands: 'wrap,screenshot,wait',
     allureResults: 'allure-results',
     allureAttachRequests: true,
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD
   },
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
