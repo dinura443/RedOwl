@@ -1,7 +1,18 @@
 import { defineConfig } from "cypress";
 import { configureAllureAdapterPlugins } from '@mmisty/cypress-allure-adapter/plugins';
+import installLogsPrinter from 'cypress-terminal-report/src/installLogsPrinter';
+import * as dotenv from 'dotenv';
+dotenv.config();
+const axios = require('axios');
+
+
+
+
+
 
 export default defineConfig({
+
+
   chromeWebSecurity: false,
   retries: {
     runMode: 0,
@@ -15,6 +26,8 @@ export default defineConfig({
     allureSkipCommands: 'wrap,screenshot,wait',
     allureResults: 'allure-results',
     allureAttachRequests: true,
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPassword: process.env.ADMIN_PASSWORD
   },
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
@@ -35,6 +48,8 @@ export default defineConfig({
     video: false,
 
     setupNodeEvents(on, config) {
+      installLogsPrinter(on);
+      
       // Add Cypress Grep Plugin
       require('@cypress/grep/src/plugin')(config);
 
@@ -43,6 +58,36 @@ export default defineConfig({
 
       // Add Allure Adapter Plugin
       const reporter = configureAllureAdapterPlugins(on, config);
+
+
+
+      on('task', {
+        log(message: string) {
+          console.log(`[LOG]: ${message}`);
+          return null;
+        }
+      });
+
+
+
+      on('task', {
+        postKualiteeResult({ project_id, token, status, tc_id }) {
+          return axios.post('https://apiss.kualitee.com/api/v2/test_case_execution/change_status', {
+            project_id,
+            token,
+            status,
+            tc_id,
+          }).then((res: { data: any }) => {
+            console.log('Kualitee API Response:', res.data);
+            return res.data;
+          }).catch((err: any) => {
+            console.error('Kualitee API Error:', err.response?.data || err.message);
+            throw err;
+          });
+        }
+      });
+      
+
 
       on('before:run', (details) => {
         reporter?.writeEnvironmentInfo({
