@@ -47,6 +47,15 @@ export default defineConfig({
     defaultCommandTimeout: 3000,
     video: false,
 
+
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/reports/mochawesome',
+      overwrite: false,
+      html: false,
+      json: true,
+    },
+
     setupNodeEvents(on, config) {
       installLogsPrinter(on);
       

@@ -1,0 +1,125 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 1,
+    "failures": 0,
+    "start": "2025-06-30T04:27:33.626Z",
+    "end": "2025-06-30T04:28:06.406Z",
+    "duration": 32780,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 50,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8e1d2b69-e981-486d-9e98-28503a5ce0f4",
+      "title": "",
+      "fullFile": "cypress/e2e/redowl.cy.js",
+      "file": "cypress/e2e/redowl.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fb3654d6-643a-4aa6-97fd-2d8608d39f57",
+          "title": "Invoice operation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "simulate a passing test case for kualitee reporting ",
+              "fullTitle": "Invoice operation simulate a passing test case for kualitee reporting ",
+              "timedOut": null,
+              "duration": 27862,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "aiAdminLogin.visitDashboardPage();\ncy.wait(10000);\nnavbarPageObjects.clickMyAgentButton();\ncy.wait(1500);\n// navbarPageObjects.clickAgentMarketPlaceButton();\n//cy.wait(1500);\nnavbarPageObjects.clickTasksButton();\ncy.wait(1500);\nnavbarPageObjects.clickKnowledgeButton();\ncy.wait(1500);\nnavbarPageObjects.clickDashboardsButton();\ncy.wait(1500);\nnavbarPageObjects.clickRecordsButton();\ncy.wait(1500);",
+              "err": {},
+              "uuid": "a5ed2a54-8b31-4fc1-a7ea-70b61a8b71ce",
+              "parentUUID": "fb3654d6-643a-4aa6-97fd-2d8608d39f57",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Simulate a failed test case for Kualitee reporting",
+              "fullTitle": "Invoice operation Simulate a failed test case for Kualitee reporting",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "expect(true).to.equal(false); // Intentionally fail the test",
+              "err": {},
+              "uuid": "38e62455-9a5a-4964-a869-e51299bd4768",
+              "parentUUID": "fb3654d6-643a-4aa6-97fd-2d8608d39f57",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a5ed2a54-8b31-4fc1-a7ea-70b61a8b71ce"
+          ],
+          "failures": [],
+          "pending": [
+            "38e62455-9a5a-4964-a869-e51299bd4768"
+          ],
+          "skipped": [],
+          "duration": 27862,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
