@@ -6,13 +6,17 @@ export class AiAdminLogin{
 
     public visitLoginPage() {
 
-       cy.visit('https://admin-dev1.redowl.io/');
+        const instanceLink = Cypress.env('instanceLink') 
+
+       cy.visit(instanceLink);
 
        return this;
     }
 
     public visitDashboardPage() {
-        cy.visit('https://admin-dev1.redowl.io/qbitum');
+        const instanceLink = Cypress.env('instanceLink') 
+
+        cy.visit(instanceLink + '/qbitum');
 
         return this;
     }

@@ -21,7 +21,8 @@ export default defineConfig({
     allureResults: 'allure-results',
     allureAttachRequests: true,
     adminEmail: process.env.ADMIN_EMAIL,
-    adminPassword: process.env.ADMIN_PASSWORD
+    adminPassword: process.env.ADMIN_PASSWORD,
+    instanceLink: process.env.INSTANCE_LINK
   },
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
